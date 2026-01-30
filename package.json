@@ -5,15 +5,15 @@
   "private": true,
   "description": "Run Moltbot personal AI assistant in a Cloudflare Sandbox",
   "scripts": {
-    "build": "vite build",
-    "deploy": "npm run build && wrangler deploy",
-    "dev": "vite dev",
-    "start": "wrangler dev",
-    "types": "wrangler types",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "build": "npx vite build",
+    "deploy": "npm run build && npx wrangler deploy",
+    "dev": "npx vite dev",
+    "start": "npx wrangler dev",
+    "types": "npx wrangler types",
+    "typecheck": "npx tsc --noEmit",
+    "test": "npx vitest run",
+    "test:watch": "npx vitest",
+    "test:coverage": "npx vitest run --coverage"
   },
   "dependencies": {
     "@cloudflare/puppeteer": "^1.0.5",

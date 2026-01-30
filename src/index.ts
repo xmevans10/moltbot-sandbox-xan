@@ -121,8 +121,15 @@ app.use('*', async (c, next) => {
   await next();
 });
 
-// Middleware: Initialize sandbox for all requests
+// Middleware: Initialize sandbox for requests that need it (skip for routes that don't use the container)
 app.use('*', async (c, next) => {
+  const url = new URL(c.req.url);
+  const path = url.pathname;
+  // Don't block on container for these; they don't need the sandbox
+  if (path === '/sandbox-health' || path === '/logo.png' || path === '/logo-small.png') {
+    c.set('sandbox', null as unknown as Sandbox);
+    return next();
+  }
   const options = buildSandboxOptions(c.env);
   const sandbox = getSandbox(c.env.Sandbox, 'moltbot', options);
   c.set('sandbox', sandbox);
